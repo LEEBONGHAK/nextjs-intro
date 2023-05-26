@@ -1,3 +1,10 @@
+import NavBar from "@/NavBar";
+
 export default function tmp() {
-	return 'return this';
+	return (
+		<div>
+			<NavBar />
+			<h1>About</h1>
+		</div>
+	);
 }
