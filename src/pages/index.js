@@ -1,7 +1,37 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Home({ results }) {
+  const router = useRouter();
+  const onClick = (id, title) => {
+    /**
+     * router.push(url, as, options)
+     *
+     * 클라이언트 측 전환을 처리하며, 이 방법은 next/link가 충분하지 않은 경우에 유용하다.
+     * url: UrlObject | String: 탐색할 URL
+     * as: UrlObject | String: 브라우저 URL 표시줄에 표시될 경로에 대한 선택적 데코레이터입니다.
+     * ```
+     * router.push({
+     * pathname: '/post/[pid]',
+     * query: { pid: post.id },
+     * })
+     * ```
+     *
+     * 외부 URL에 대해서는 router.push()를 사용할 필요가 없으며, window.location을 사용하는 것이 더 적합하다.
+     * https://nextjs.org/docs/api-reference/next/router#routerpush
+     */
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`,
+    );
+  };
+
   return (
     <>
       <div className="container">
@@ -18,8 +48,20 @@ export default function Home({ results }) {
                 transition: 'transform 0.2s ease-in-out',
                 'box-shadow': 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
               }}
+              onClick={() => onClick(movie.id, movie.original_title)}
             />
-            <h4>{movie.original_title}</h4>
+            <Link
+              href={{
+                pathname: `movies/${movie.id}`,
+                query: {
+                  title,
+                },
+              }}
+              as={`movies/${movie.id}`}
+              key={movie.id}
+            >
+              <h4>{movie.original_title}</h4>
+            </Link>
           </div>
         ))}
       </div>
