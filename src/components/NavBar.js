@@ -4,9 +4,17 @@ import { useRouter } from 'next/router';
 import HeadTitle from './HeadTitle';
 
 export default function NavBar() {
-  const path = {
-    '/': 'Home',
-    '/about': 'About',
+  const getHeaderTitle = (router) => {
+    const path = {
+      '/': 'Home',
+      '/about': 'About',
+    };
+
+    if (router.pathname === '/movies/[...params]') {
+      const [title, id] = router.query.params;
+      return title && title !== '' ? title : 'Untitled';
+    }
+    return path[router.pathname];
   };
 
   const router = useRouter();
@@ -16,7 +24,7 @@ export default function NavBar() {
 
   return (
     <>
-      <HeadTitle title={path[router.pathname]} />
+      <HeadTitle title={getHeaderTitle(router)} />
       <nav>
         <Image
           src="/vercel.svg"

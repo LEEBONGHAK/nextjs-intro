@@ -21,15 +21,7 @@ export default function Home({ results }) {
      * 외부 URL에 대해서는 router.push()를 사용할 필요가 없으며, window.location을 사용하는 것이 더 적합하다.
      * https://nextjs.org/docs/api-reference/next/router#routerpush
      */
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`,
-    );
+    router.push(`/movies/${title}/${id}`);
   };
 
   return (
@@ -51,13 +43,7 @@ export default function Home({ results }) {
               onClick={() => onClick(movie.id, movie.original_title)}
             />
             <Link
-              href={{
-                pathname: `movies/${movie.id}`,
-                query: {
-                  title,
-                },
-              }}
-              as={`movies/${movie.id}`}
+              href={`movies/${movie.original_title}/${movie.id}`}
               key={movie.id}
             >
               <h4>{movie.original_title}</h4>
