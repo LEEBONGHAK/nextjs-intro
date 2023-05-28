@@ -2,5 +2,7 @@
     "editor.comments.insertSpace": true,
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
-    "editor.guides.bracketPairs": true
+    "editor.guides.bracketPairs": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

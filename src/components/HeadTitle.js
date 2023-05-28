@@ -1,9 +1,13 @@
-import Head from 'next/head';
+import Head from "next/head";
 
 export default function HeadTitle({ title }) {
-	return (
-		<Head>
-			<title>{title} | Next Movies</title>
-		</Head>
-	)
+  console.log("------------------------------------");
+  console.log("title:", title);
+  console.log(typeof title);
+  console.log("------------------------------------");
+  return (
+    <Head>
+      <title>{title} | Next Movies</title>
+    </Head>
+  );
 }

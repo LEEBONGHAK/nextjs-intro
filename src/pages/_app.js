@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import '../styles/globals.css';
 
 /**
  * nextjs는 렌더링할 페이지 컴포넌트를 Component와 Component에서 사용하는 pageProps를 인자로 받는 _app.js 컴포넌트를 제일 먼저 렌더링 한다.
